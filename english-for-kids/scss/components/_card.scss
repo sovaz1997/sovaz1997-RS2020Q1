@@ -1,0 +1,70 @@
+
+.card {
+  position: relative;
+  @include card-shadow();
+  transition: box-shadow .3s,
+    transform .5s;
+  transform-style: preserve-3d;
+  height: 215px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding-bottom: 50px;
+}
+
+.card:hover {
+  @include card-shadow--hover();
+}
+
+.card__face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  background-color: #fff;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__face--back {
+  transform: rotateY(180deg);
+}
+
+.card--flipped {
+  transform: rotateY(180deg);
+}
+
+.card--flipped .card__control {
+  display: none;
+}
+
+.card__word {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  color: #007CB5;
+  padding: 15px 0;
+}
+
+.card__image {
+  width: 100%;
+}
+
+.card__control {
+  position: absolute;
+  width: 100%;
+  bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.card__flip-button {
+  @include image-button(20px, 20px, 'icons/flip.svg');
+}
+
+.card__speaker-button {
+  @include image-button(16px, 20px, 'icons/speaker.svg');
+}

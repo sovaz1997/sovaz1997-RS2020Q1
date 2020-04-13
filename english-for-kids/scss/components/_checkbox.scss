@@ -1,0 +1,27 @@
+.checkbox {
+  display: flex;
+}
+
+.checkbox__button {
+  background-color: #fff;
+  border: none;
+  height: 30px;
+  width: 150px;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+
+  &--active {
+    color: #fff;
+    background-color: #00AE3B;
+  }
+}
+
+.checkbox__button:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.checkbox__button:last-child {
+  border-radius: 0 10px 10px 0;
+}

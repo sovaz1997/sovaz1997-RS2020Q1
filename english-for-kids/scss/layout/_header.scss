@@ -1,0 +1,32 @@
+.site-header {
+  padding: 0 $desktop-padding;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-blue;
+  color: #fff;
+  height: 60px;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.site-header__menu-button {
+  position: absolute;
+  left: $desktop-padding;
+
+  @include image-button(32px, 20px, 'icons/burger.svg');
+}
+
+.site-header__name {
+  font-size: 32px;
+  font-weight: normal;
+
+  span {
+    font-size: 24px;
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English for kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <button class="site-header__menu-button"></button>
+    <h1 class="site-header__name">English <span>- for kids</span></h1>
+  </header>
+  <main class="page">
+    <div class="page__background"></div>
+    <div class="page__content">
+      <div class="navigation-chain">
+        <a class="navigation-chain__item navigation-chain__item--link" href="#">Categories</a>
+        <span class="navigation-chain__item navigation-chain__item--splitter"></span>
+        <a class="navigation-chain__item navigation-chain__item--link" href="#">Animal</a>
+      </div>
+      <div class="game">
+        <div class="game__header">
+          <div class="game__type checkbox">
+            <button class="checkbox__button checkbox__button--active">Train</button>
+            <button class="checkbox__button">Play</button>
+          </div>
+          <div class="game__progress stars">
+            <div class="stars__star stars__star--success"></div>
+            <div class="stars__star stars__star--fail"></div>
+            <div class="stars__star stars__star--fail"></div>
+            <div class="stars__star stars__star--success"></div>
+          </div>
+        </div>
+        <ul class="game__cards cards">
+          <li class="card">
+            <div class="card__face card__face--front">
+              <span class="card__word">rabbit</span>
+              <img class="card__image" src="./data/img/categories/animal1/rabbit.jpg">
+              <div class="card__control">
+                <button class="card__flip-button"></button>
+                <button class="card__speaker-button"></button>
+              </div>
+            </div>
+            <div class="card__face card__face--back">
+              <span class="card__word">кролик</span>
+              <img class="card__image" src="./data/img/categories/animal1/rabbit.jpg">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

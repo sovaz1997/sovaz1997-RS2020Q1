@@ -1,0 +1,8 @@
+.cards {
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, 168px);
+  gap: 20px;
+
+  @include list-reset;
+}
