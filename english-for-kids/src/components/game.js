@@ -8,10 +8,11 @@ import Card from './card';
 
 export default class Game {
   state = {
-    gameStage: 'started',
-    isTrain: false,
-    isWin: false,
-    result: [],
+    /*
+      Stages: before-start, in-progress, finish, train
+    */
+    gameStage: 'before-start',
+    gameResult: false,
     category: '',
     wordData: [],
   };
@@ -29,7 +30,8 @@ export default class Game {
     this.navigationChain.setItems(['Categories', 'Animal']);
 
     this.gameTypeElement = new CheckBox('game__type');
-    this.gameTypeElement.setItems(['Train', 'Play']);
+    this.gameTypeElement.addItem('Train', () => { this.startTrain(); });
+    this.gameTypeElement.addItem('Game', () => { this.startNewGame(); });
 
     this.gameStarsElement = new Stars(10, 'game__progress');
 
@@ -41,18 +43,19 @@ export default class Game {
     this.page.lazyAppendContent(this.navigationChain.el);
     this.page.lazyAppendContent(this.gameTypeElement.el);
 
-    if (!this.state.isTrain) {
-      if (this.state.gameStage === 'started') {
-        this.page.lazyAppendContent(this.gameStarsElement.el);
-        const cardList = this.generateCardList();
-        this.page.lazyAppendContent(cardList);
-      }
+    if (this.state.gameStage === 'in-progress') {
+      this.page.lazyAppendContent(this.gameStarsElement.el);
+      const cardList = this.generateCardList(true);
+      this.page.lazyAppendContent(cardList);
+    } else if (this.state.gameStage === 'train') {
+      const cardList = this.generateCardList(false);
+      this.page.lazyAppendContent(cardList);
     }
 
     this.page.apply();
   }
 
-  generateCardList() {
+  generateCardList(onlyImage) {
     this.cardElements = this.state.wordData.map((word, index) => new Card(index, word));
 
     this.cardElements.forEach((card) => {
@@ -60,6 +63,10 @@ export default class Game {
     });
 
     const cardList = Utils.createElement('ul', 'game__cards', 'cards');
+
+    if (onlyImage) {
+      cardList.classList.add('cards--only-image');
+    }
 
     this.cardElements.forEach((card) => {
       cardList.append(card.el);
@@ -78,6 +85,16 @@ export default class Game {
 
   loadImages(category) {
     this.state.wordData = Utils.shuffle(store.getCardsData(category));
+    this.render();
+  }
+
+  startTrain() {
+    this.state.gameStage = 'train';
+    this.render();
+  }
+
+  startNewGame() {
+    this.state.gameStage = 'in-progress';
     this.render();
   }
 }

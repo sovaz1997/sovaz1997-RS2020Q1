@@ -18,15 +18,12 @@ export default class CheckBox {
 
   render() {
     this.el.innerHTML = '';
-    let renderStr = '';
 
     const { active } = this.state;
 
-    this.state.items.forEach((name, index) => {
-      renderStr += CheckBox.getItemHTML(index, name, index === active);
+    this.state.items.forEach((item, index) => {
+      this.el.append(this.getButton(index, item, index === active));
     });
-
-    this.el.innerHTML = renderStr;
   }
 
   setActive(index) {
@@ -34,19 +31,28 @@ export default class CheckBox {
     this.render();
   }
 
-  static getItemHTML(index, name, active) {
+  getButton(index, { text, callback }, active) {
     const activeClassName = 'checkbox__button--active';
-    return `
-      <button
-        class="checkbox__button ${active ? activeClassName : ''}"
-        data-index="${index}">
-        ${name}
-      </button>
-      `;
+
+    const button = document.createElement('button');
+    button.classList.add('checkbox__button');
+
+    if (active) button.classList.add(activeClassName);
+
+    button.dataset.index = index;
+    button.innerText = text;
+
+    button.addEventListener('click', (e) => {
+      if (Number(e.target.dataset.index) !== this.state.active) {
+        callback();
+      }
+    });
+
+    return button;
   }
 
-  setItems(items) {
-    this.state.items = items;
+  addItem(text, callback) {
+    this.state.items.push({ text, callback });
     this.render();
   }
 

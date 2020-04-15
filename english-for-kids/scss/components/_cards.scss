@@ -6,3 +6,35 @@
 
   @include list-reset;
 }
+
+.cards--only-image {
+  .card__control {
+    display: none;
+  }
+
+  .card__word {
+    display: none;
+    position: static;
+  }
+
+  .card__face--back {
+    display: none;
+  }
+  
+  grid-template-columns: repeat(auto-fill, 230px);
+
+  .card__face {
+    position: static;
+  }
+
+  .card__image {
+    display: block;;
+    position: static;
+    border-radius: 10px;
+  }
+
+  .card {
+    height: auto;
+    padding: 0;
+  }
+}
