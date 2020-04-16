@@ -17,38 +17,54 @@ export default class Game {
     wordData: [],
   };
 
-  constructor(controller) {
-    this.controller = controller;
+  constructor(app) {
+    this.app = app;
 
     this.createElement();
-    this.setCategory('Action (set A)');
-    this.render();
   }
 
   createElement() {
     this.page = new Page('Game', 'Play in game', false);
+  }
 
-    this.navigationChain = new NavigationChain();
-    this.navigationChain.setItems(['Categories', 'Animal']);
+  getNavigationChainElement() {
+    const navigationChain = new NavigationChain();
 
-    this.gameTypeElement = new CheckBox('game__type');
-    this.gameTypeElement.addItem('Train', () => { this.setTrainMode(); });
-    this.gameTypeElement.addItem('Game', () => { this.setGameMode(); });
+    navigationChain.addItem('Categories', () => {
+      this.app.controller('load-categories');
+    });
 
-    this.gameStarsElement = new Stars(10, 'game__progress');
+    navigationChain.addItem('Animal', () => {});
 
-    this.page.setContent(this.navigationChain.el);
+    return navigationChain;
+  }
+
+  getGameTypeCheckBoxElement() {
+    if (this.gameCheckBox === undefined) {
+      this.gameCheckBox = new CheckBox('game__type');
+      this.gameCheckBox.addItem('Train', () => { this.setTrainMode(); });
+      this.gameCheckBox.addItem('Game', () => { this.setGameMode(); });
+
+      return this.gameCheckBox;
+    }
+
+    return this.gameCheckBox;
+  }
+
+  static getGameStarsElement() {
+    return new Stars(10, 'game__progress');
   }
 
   render() {
-    this.page.lazyClearContent();
-    this.page.lazyAppendContent(this.navigationChain.el);
-    this.page.lazyAppendContent(this.gameTypeElement.el);
+    this.page.clearContent();
+
+    this.page.lazyAppendContent(this.getNavigationChainElement().el);
+    this.page.lazyAppendContent(this.getGameTypeCheckBoxElement().el);
 
     if (this.state.gameStage === 'before-start') {
       this.page.lazyAppendContent(this.startGameButton());
     } else if (this.state.gameStage === 'in-progress') {
-      this.page.lazyAppendContent(this.gameStarsElement.el);
+      this.page.lazyAppendContent(Game.getGameStarsElement().el);
       const cardList = this.generateCardList(true);
       this.page.lazyAppendContent(cardList);
     } else if (this.state.gameStage === 'train') {

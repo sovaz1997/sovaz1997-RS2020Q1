@@ -9,7 +9,6 @@ export default class PageContent {
   createElement() {
     this.el = Utils.createElement('div', 'page__content');
     this.createHeaders(this.el);
-    console.log(this.el);
   }
 
   createHeaders(selector) {

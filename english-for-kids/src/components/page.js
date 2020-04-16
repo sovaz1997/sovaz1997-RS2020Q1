@@ -24,7 +24,17 @@ export default class Page {
     this.el.append(main);
   }
 
+  clearContent() {
+    this.content.clearContent();
+    this.lazyClearContent();
+  }
+
   setContent(...content) {
+    this.clearContent();
+    this.appendContent(...content);
+  }
+
+  appendContent(...content) {
     this.content.setContent(...content);
   }
 
@@ -39,7 +49,7 @@ export default class Page {
 
   apply() {
     if (this.lazyCash) {
-      this.setContent(...this.lazyCash);
+      this.appendContent(...this.lazyCash);
     }
   }
 }

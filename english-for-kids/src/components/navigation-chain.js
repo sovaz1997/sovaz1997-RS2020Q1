@@ -15,29 +15,32 @@ export default class NavigationChain {
 
   render() {
     this.el.innerHTML = '';
-    let renderStr = '';
 
-    this.state.items.forEach((name, index, arr) => {
-      renderStr += NavigationChain.getItemHTML(name);
+    this.state.items.forEach((item, index, arr) => {
+      this.el.append(NavigationChain.getItem(item));
 
       if (index < arr.length - 1) {
-        renderStr += NavigationChain.getSplitterHTML();
+        this.el.append(NavigationChain.getSplitter());
       }
     });
-
-    this.el.innerHTML = renderStr;
   }
 
-  static getItemHTML(name) {
-    return `<a class="navigation-chain__item navigation-chain__item--link" href="#">${name}</a>`;
+  static getItem({ text, callback }) {
+    const el = Utils.createElement('a', 'navigation-chain__item', 'navigation-chain__item--link');
+    el.setAttribute('href', '#');
+    el.innerText = text;
+    el.addEventListener('click', () => {
+      callback();
+    });
+    return el;
   }
 
-  static getSplitterHTML() {
-    return '<span class="navigation-chain__item navigation-chain__item--splitter"></span>';
+  static getSplitter() {
+    return Utils.createElement('span', 'navigation-chain__item', 'navigation-chain__item--splitter');
   }
 
-  setItems(items) {
-    this.state.items = items;
+  addItem(text, callback) {
+    this.state.items.push({ text, callback });
     this.render();
   }
 }

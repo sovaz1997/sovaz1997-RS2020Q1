@@ -6,7 +6,8 @@ export default class CategoriesView {
     categories: [],
   }
 
-  constructor() {
+  constructor(app) {
+    this.app = app;
     this.createElement();
   }
 
@@ -42,6 +43,12 @@ export default class CategoriesView {
       <img class="category__image" src="${categoryInfo.image}">
     </a>`;
 
+    categoryDOM.dataset.name = categoryInfo.name;
+
     this.state.categories.push({ name: categoryInfo.name, element: categoryDOM });
+
+    categoryDOM.addEventListener('click', () => {
+      this.app.controller('load-cards', { category: categoryDOM.dataset.name });
+    });
   }
 }

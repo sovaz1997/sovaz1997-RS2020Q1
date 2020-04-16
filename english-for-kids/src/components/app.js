@@ -27,13 +27,14 @@ export default class App {
 
   createCategoriesPage() {
     const categoriesPage = new Page('Categories', 'Choose one of these categories:', true);
-    const categoriesView = new CategoriesView();
-    categoriesPage.setContent(categoriesView.el);
+    const categoriesView = new CategoriesView(this);
+    categoriesPage.lazyAppendContent(categoriesView.el);
+    categoriesPage.apply();
     this.addPage('categories', categoriesPage);
   }
 
   createGamePage() {
-    this.game = new Game(this.controller);
+    this.game = new Game(this);
     this.addPage('game', this.game.page);
   }
 
@@ -50,12 +51,13 @@ export default class App {
     this.el.append(this.state.pages[store.state.page].el);
   }
 
-  controller(command, props) {
-    if (command === 'load-categories-page') {
+  controller = (command, props) => {
+    if (command === 'load-categories') {
       this.loadPage('categories');
     } else if (command === 'load-cards') {
       this.loadPage('game');
       this.game.setCategory(props.category);
+      this.game.render();
     }
   }
 }
