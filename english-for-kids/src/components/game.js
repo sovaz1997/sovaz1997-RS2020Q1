@@ -66,6 +66,7 @@ export default class Game {
   }
 
   generateCardList(onlyImage) {
+    this.state.wordData = Utils.shuffle(this.state.wordData);
     this.cardElements = this.state.wordData.map((word, index) => new Card(index, word));
 
     this.cardElements.forEach((card) => {
