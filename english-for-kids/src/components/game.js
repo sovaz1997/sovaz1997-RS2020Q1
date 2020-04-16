@@ -43,7 +43,6 @@ export default class Game {
     this.page.lazyAppendContent(this.navigationChain.el);
     this.page.lazyAppendContent(this.gameTypeElement.el);
 
-    console.log(this.state.gameStage);
     if (this.state.gameStage === 'before-start') {
       this.page.lazyAppendContent(this.startGameButton());
     } else if (this.state.gameStage === 'in-progress') {
@@ -95,7 +94,7 @@ export default class Game {
   }
 
   loadImages(category) {
-    this.state.wordData = Utils.shuffle(store.getCardsData(category));
+    this.state.wordData = store.getCardsData(category);
     this.render();
   }
 
