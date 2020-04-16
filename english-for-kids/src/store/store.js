@@ -10,6 +10,10 @@ class Store {
     this.instance = this;
   }
 
+  setPage(pageName) {
+    this.state.page = pageName;
+  }
+
   static transformPath(path) {
     return `./data/${path}`;
   }

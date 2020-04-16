@@ -17,15 +17,16 @@ export default class Game {
     wordData: [],
   };
 
-  constructor(header) {
-    this.header = header;
+  constructor(controller) {
+    this.controller = controller;
+
     this.createElement();
     this.setCategory('Action (set A)');
     this.render();
   }
 
   createElement() {
-    this.page = new Page('Game', 'Play in game', false, this.header);
+    this.page = new Page('Game', 'Play in game', false);
 
     this.navigationChain = new NavigationChain();
     this.navigationChain.setItems(['Categories', 'Animal']);

@@ -1,12 +1,13 @@
 import Utils from '../utils/utils';
 import PageContent from './page-content';
+import PageHeader from './page-header';
 
 export default class Page {
-  constructor(name, description, showInfo, header) {
+  constructor(name, description, showInfo) {
     this.info = { name, description };
 
     this.content = new PageContent(showInfo ? this.info : undefined);
-    this.header = header;
+    this.header = new PageHeader();
 
     this.createElement();
   }

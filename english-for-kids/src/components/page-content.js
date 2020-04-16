@@ -9,6 +9,7 @@ export default class PageContent {
   createElement() {
     this.el = Utils.createElement('div', 'page__content');
     this.createHeaders(this.el);
+    console.log(this.el);
   }
 
   createHeaders(selector) {
@@ -34,7 +35,6 @@ export default class PageContent {
   }
 
   setContent(...content) {
-    this.clearContent();
     content.forEach((el) => {
       this.addContent(el);
     });
