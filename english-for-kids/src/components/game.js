@@ -20,7 +20,8 @@ export default class Game {
   constructor(header) {
     this.header = header;
     this.createElement();
-    this.loadImages('Action (set A)');
+    this.setCategory('Action (set A)');
+    this.render();
   }
 
   createElement() {
@@ -93,9 +94,8 @@ export default class Game {
     };
   }
 
-  loadImages(category) {
-    this.state.wordData = store.getCardsData(category);
-    this.render();
+  setCategory(categoryName) {
+    this.state.wordData = store.getCardsData(categoryName);
   }
 
   setTrainMode() {
