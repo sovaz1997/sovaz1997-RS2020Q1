@@ -58,7 +58,9 @@ export default class CheckBox {
 
   addEventListeners() {
     this.el.addEventListener('click', (e) => {
-      this.setActive(e.target.dataset.index);
+      if (e.target.dataset.index !== undefined) {
+        this.setActive(e.target.dataset.index);
+      }
     });
   }
 }
