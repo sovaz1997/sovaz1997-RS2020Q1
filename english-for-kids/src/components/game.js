@@ -11,7 +11,7 @@ export default class Game {
     /*
       Stages: before-start, in-progress, finish, train
     */
-    gameStage: 'before-start',
+    gameStage: 'train',
     gameResult: false,
     category: '',
     wordData: [],
@@ -30,8 +30,8 @@ export default class Game {
     this.navigationChain.setItems(['Categories', 'Animal']);
 
     this.gameTypeElement = new CheckBox('game__type');
-    this.gameTypeElement.addItem('Train', () => { this.startTrain(); });
-    this.gameTypeElement.addItem('Game', () => { this.startNewGame(); });
+    this.gameTypeElement.addItem('Train', () => { this.setTrainMode(); });
+    this.gameTypeElement.addItem('Game', () => { this.setGameMode(); });
 
     this.gameStarsElement = new Stars(10, 'game__progress');
 
@@ -43,7 +43,10 @@ export default class Game {
     this.page.lazyAppendContent(this.navigationChain.el);
     this.page.lazyAppendContent(this.gameTypeElement.el);
 
-    if (this.state.gameStage === 'in-progress') {
+    console.log(this.state.gameStage);
+    if (this.state.gameStage === 'before-start') {
+      this.page.lazyAppendContent(this.startGameButton());
+    } else if (this.state.gameStage === 'in-progress') {
       this.page.lazyAppendContent(this.gameStarsElement.el);
       const cardList = this.generateCardList(true);
       this.page.lazyAppendContent(cardList);
@@ -53,6 +56,13 @@ export default class Game {
     }
 
     this.page.apply();
+  }
+
+  startGameButton() {
+    const el = Utils.createElement('button', 'button', 'game__start-button');
+    el.innerText = 'Start new Game!';
+    el.addEventListener('click', () => { this.startNewGame(); });
+    return el;
   }
 
   generateCardList(onlyImage) {
@@ -88,8 +98,13 @@ export default class Game {
     this.render();
   }
 
-  startTrain() {
+  setTrainMode() {
     this.state.gameStage = 'train';
+    this.render();
+  }
+
+  setGameMode() {
+    this.state.gameStage = 'before-start';
     this.render();
   }
 
