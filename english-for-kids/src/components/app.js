@@ -28,8 +28,7 @@ export default class App {
   createCategoriesPage() {
     const categoriesPage = new Page('Categories', 'Choose one of these categories:', true);
     const categoriesView = new CategoriesView(this);
-    categoriesPage.lazyAppendContent(categoriesView.el);
-    categoriesPage.apply();
+    categoriesPage.appendContent(categoriesView.el);
     this.addPage('categories', categoriesPage);
   }
 

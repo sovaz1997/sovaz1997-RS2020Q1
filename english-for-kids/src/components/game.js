@@ -79,25 +79,23 @@ export default class Game {
     this.page.clearContent();
 
     const gameHeader = Utils.createElement('div', 'game__header');
-    this.page.lazyAppendContent(this.getNavigationChainElement().el);
+    this.page.appendContent(this.getNavigationChainElement().el);
     gameHeader.append(this.getGameTypeCheckBoxElement().el);
-    this.page.lazyAppendContent(gameHeader);
+    this.page.appendContent(gameHeader);
 
     if (this.state.gameStage === 'before-start') {
-      this.page.lazyAppendContent(this.startGameButton());
+      this.page.appendContent(this.startGameButton());
     } else if (this.state.gameStage === 'in-progress') {
       gameHeader.append(this.getGameStarsElement().el);
       const cardList = this.generateCardList(true);
-      this.page.lazyAppendContent(cardList);
+      this.page.appendContent(cardList);
     } else if (this.state.gameStage === 'train') {
       const cardList = this.generateCardList(false);
-      this.page.lazyAppendContent(cardList);
+      this.page.appendContent(cardList);
     } else if (this.state.gameStage === 'finish') {
       const { isWin } = this.state.gameState;
-      this.page.lazyAppendContent(Game.getResultElement(isWin));
+      this.page.appendContent(Game.getResultElement(isWin));
     }
-
-    this.page.apply();
   }
 
   startGameButton() {

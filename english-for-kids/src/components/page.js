@@ -26,30 +26,9 @@ export default class Page {
 
   clearContent() {
     this.content.clearContent();
-    this.lazyClearContent();
   }
 
-  setContent(...content) {
-    this.clearContent();
-    this.appendContent(...content);
-  }
-
-  appendContent(...content) {
-    this.content.setContent(...content);
-  }
-
-  lazyClearContent() {
-    this.lazyCash = [];
-  }
-
-  lazyAppendContent(element) {
-    if (!this.lazyCash) this.lazyClearContent();
-    this.lazyCash.push(element);
-  }
-
-  apply() {
-    if (this.lazyCash) {
-      this.appendContent(...this.lazyCash);
-    }
+  appendContent(element) {
+    this.content.addContent(element);
   }
 }

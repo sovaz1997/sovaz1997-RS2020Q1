@@ -32,10 +32,4 @@ export default class PageContent {
   addContent(contentItem) {
     this.el.append(contentItem);
   }
-
-  setContent(...content) {
-    content.forEach((el) => {
-      this.addContent(el);
-    });
-  }
 }
