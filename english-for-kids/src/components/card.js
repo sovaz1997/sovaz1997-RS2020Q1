@@ -6,6 +6,7 @@ export default class Card {
     translation: '',
     image: '',
     audioSrc: '',
+    active: true,
   };
 
   constructor(index, state, mode, gameObject) {
@@ -28,7 +29,11 @@ export default class Card {
   }
 
   template() {
-    const { word, translation, image } = this.state;
+    const {
+      word,
+      translation,
+      image,
+    } = this.state;
 
     return `
       <div class="card__face card__face--front">
@@ -55,8 +60,8 @@ export default class Card {
     this.el.addEventListener('click', () => {
       if (this.mode === 'train') {
         this.flipCard(true);
-      } else {
-        this.gameObject.checkWord(this.state.word);
+      } else if (this.state.active) {
+        this.gameObject.checkWord(this.state.word, this);
       }
     });
 
@@ -67,5 +72,14 @@ export default class Card {
 
   flipCard(value) {
     this.el.classList.toggle('card--flipped', value);
+  }
+
+  toggleActiveClass() {
+    this.el.classList.toggle('card--disable', !this.state.active);
+  }
+
+  unactive() {
+    this.state.active = false;
+    this.toggleActiveClass();
   }
 }

@@ -214,11 +214,13 @@ export default class Game {
     Game.resultSoundPlay(isSuccess);
   }
 
-  checkWord(word) {
+  checkWord(word, card) {
     if (this.state.block) return;
 
     if (this.state.gameStage === 'in-progress') {
-      this.appendResult(word === this.state.gameState.currentWord.word);
+      const success = word === this.state.gameState.currentWord.word;
+      this.appendResult(success);
+      if (success) card.unactive();
       this.state.block = true;
       setTimeout(() => {
         this.state.block = false;

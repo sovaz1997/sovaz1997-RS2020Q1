@@ -10,6 +10,12 @@
   border-radius: 10px;
   padding-bottom: 50px;
   user-select: none;
+  transition: filter .7s ease-out;
+  
+
+  &--disable {
+    filter: grayscale(100%);
+  }
 }
 
 .card:hover {
