@@ -38,7 +38,7 @@ export default class Game {
       this.app.controller('load-categories');
     });
 
-    navigationChain.addItem('Animal', () => {});
+    navigationChain.addItem(this.state.category, () => {});
 
     return navigationChain;
   }
@@ -119,6 +119,7 @@ export default class Game {
   }
 
   setCategory(categoryName) {
+    this.state.category = categoryName;
     this.state.wordData = store.getCardsData(categoryName);
   }
 
@@ -186,7 +187,7 @@ export default class Game {
   checkWord(word) {
     if (this.state.gameStage === 'in-progress') {
       this.appendResult(word === this.state.gameState.currentWord.word);
-      setTimeout(() => { this.nextWord(); }, 500);
+      setTimeout(() => { this.nextWord(); }, 1000);
     }
   }
 }
