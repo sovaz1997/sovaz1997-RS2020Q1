@@ -168,10 +168,19 @@ export default class Game {
     Utils.playAudio(gameState.currentWord.audioSrc);
   }
 
+  static resultSoundPlay(isSuccess) {
+    if (isSuccess) {
+      Utils.playAudio('../data/audio/success.mp3');
+    } else {
+      Utils.playAudio('../data/audio/error.mp3');
+    }
+  }
+
   appendResult(isSuccess) {
     this.state.gameState.success += +isSuccess;
     this.state.gameState.fail += +!isSuccess;
     this.getGameStarsElement().addStar(isSuccess);
+    Game.resultSoundPlay(isSuccess);
   }
 
   checkWord(word) {
