@@ -34,10 +34,7 @@ export default class Card {
       <div class="card__face card__face--front">
         <span class="card__word">${word}</span>
         <img class="card__image" src="${image}">
-        <div class="card__control">
-          <button class="card__flip-button"></button>
-          <button class="card__speaker-button"></button>
-        </div>
+        <button class="card__speaker-button"></button>
       </div>
       <div class="card__face card__face--back">
         <span class="card__word">${translation}</span>

@@ -36,7 +36,7 @@
   transform: rotateY(180deg);
 }
 
-.card--flipped .card__control {
+.card--flipped .card__speaker-button {
   display: none;
 }
 
@@ -52,10 +52,10 @@
   width: 100%;
 }
 
-.card__control {
+.card__speaker-button {
   position: absolute;
   width: 100%;
-  bottom: 15px;
+  bottom: 17px;
   display: flex;
   justify-content: space-between;
   width: 80px;
