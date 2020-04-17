@@ -12,13 +12,13 @@ export default class Game {
       Stages: before-start, in-progress, finish, train
     */
     gameStage: 'train',
-    gameResult: false,
     category: '',
     wordData: [],
     gameState: {
       success: 0,
       fail: 0,
       leftWords: [],
+      isWin: false,
     },
   };
 
@@ -29,6 +29,17 @@ export default class Game {
 
   createElement() {
     this.page = new Page('Game', 'Play in game', false);
+  }
+
+  static getResultElement(isWin) {
+    const result = Utils.createElement('div', 'game__result');
+    const resultImage = Utils.createElement('img', 'game__result-image');
+    const resultImageSrc = `./data/img/${isWin ? 'success' : 'failure'}.jpg`;
+
+    resultImage.setAttribute('src', resultImageSrc);
+
+    result.append(resultImage);
+    return result;
   }
 
   getNavigationChainElement() {
@@ -85,6 +96,9 @@ export default class Game {
     } else if (this.state.gameStage === 'train') {
       const cardList = this.generateCardList(false);
       this.page.lazyAppendContent(cardList);
+    } else if (this.state.gameStage === 'finish') {
+      const { isWin } = this.state.gameState;
+      this.page.lazyAppendContent(Game.getResultElement(isWin));
     }
 
     this.page.apply();
@@ -164,13 +178,23 @@ export default class Game {
   }
 
   finishGame() {
-    return this;
+    this.setGameResult();
+    this.state.gameStage = 'finish';
+    this.render();
+  }
+
+  setGameResult() {
+    const { gameState } = this.state;
+    gameState.isWin = !gameState.fail;
   }
 
   nextWord() {
     const { gameState } = this.state;
 
-    if (gameState.leftWords < 0) this.finishGame();
+    if (!gameState.leftWords.length) {
+      this.finishGame();
+      return;
+    }
 
     gameState.currentWord = gameState.leftWords.shift();
     Utils.playAudio(gameState.currentWord.audioSrc);
