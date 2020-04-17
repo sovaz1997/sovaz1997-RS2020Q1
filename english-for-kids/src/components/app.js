@@ -57,6 +57,7 @@ export default class App {
     } else if (command === 'load-cards') {
       this.loadPage('game');
       this.game.setCategory(props.category);
+      this.game.loadGame();
       this.game.render();
     }
   }

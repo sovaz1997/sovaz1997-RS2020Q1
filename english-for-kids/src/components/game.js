@@ -129,4 +129,10 @@ export default class Game {
     this.state.gameStage = 'in-progress';
     this.render();
   }
+
+  loadGame() {
+    if (this.state.gameStage !== 'train') {
+      this.setGameMode();
+    }
+  }
 }
