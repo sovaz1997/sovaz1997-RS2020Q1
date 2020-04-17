@@ -156,9 +156,14 @@ export default class Game {
     Utils.playAudio(gameState.currentWord.audioSrc);
   }
 
+  appendResult(isSuccess) {
+    this.state.gameState.success += +isSuccess;
+    this.state.gameState.fail += !isSuccess;
+  }
+
   checkWord(word) {
     if (this.state.gameStage === 'in-progress') {
-      console.log(word);
+      this.appendResult(word === this.state.gameState.currentWord.word);
       setTimeout(() => { this.nextWord(); }, 500);
     }
   }
