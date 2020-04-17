@@ -178,7 +178,7 @@ export default class Game {
 
   static resultSoundPlay(isSuccess) {
     if (isSuccess) {
-      Utils.playAudio('../data/audio/success.mp3');
+      Utils.playAudio('../data/audio/correct.mp3');
     } else {
       Utils.playAudio('../data/audio/error.mp3');
     }
@@ -200,7 +200,7 @@ export default class Game {
       setTimeout(() => {
         this.state.block = false;
         this.nextWord();
-      }, 1000);
+      }, 700);
     }
   }
 }
