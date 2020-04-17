@@ -81,7 +81,6 @@ export default class Game {
   render() {
     this.page.clearContent();
 
-
     const gameHeader = Utils.createElement('div', 'game__header');
     this.page.lazyAppendContent(this.getNavigationChainElement().el);
     gameHeader.append(this.getGameTypeCheckBoxElement().el);
