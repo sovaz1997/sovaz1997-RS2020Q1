@@ -185,9 +185,15 @@ export default class Game {
   }
 
   checkWord(word) {
+    if (this.state.block) return;
+
     if (this.state.gameStage === 'in-progress') {
       this.appendResult(word === this.state.gameState.currentWord.word);
-      setTimeout(() => { this.nextWord(); }, 1000);
+      this.state.block = true;
+      setTimeout(() => {
+        this.state.block = false;
+        this.nextWord();
+      }, 1000);
     }
   }
 }
