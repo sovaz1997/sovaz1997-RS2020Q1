@@ -8,10 +8,11 @@ export default class Card {
     audioSrc: '',
   };
 
-  constructor(index, state, gameObject) {
+  constructor(index, state, mode, gameObject) {
     this.index = index;
     this.state = { ...this.state, ...state };
     this.gameObject = gameObject;
+    this.mode = mode;
     this.createElement();
   }
 
@@ -47,26 +48,23 @@ export default class Card {
 
   addAudioElement() {
     const audioButton = this.el.querySelector('.card__speaker-button');
-    audioButton.addEventListener('click', () => {
+    audioButton.addEventListener('click', (e) => {
+      e.stopPropagation();
       Utils.playAudio(this.state.audioSrc);
     });
   }
 
   addEventListeners() {
-    const flipButton = this.el.querySelector('.card__flip-button');
-
-    flipButton.addEventListener('click', () => {
-      this.flipCard(true);
-
-      this.el.addEventListener('mouseleave', () => {
-        this.flipCard(false);
-      });
+    this.el.addEventListener('click', () => {
+      if (this.mode === 'train') {
+        this.flipCard(true);
+      } else {
+        this.gameObject.checkWord(this.state.word);
+      }
     });
 
-    const image = this.el.querySelector('.card__image');
-
-    image.addEventListener('click', () => {
-      this.gameObject.checkWord(this.state.word);
+    this.el.addEventListener('mouseleave', () => {
+      this.flipCard(false);
     });
   }
 

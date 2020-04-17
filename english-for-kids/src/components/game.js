@@ -97,9 +97,16 @@ export default class Game {
     return el;
   }
 
+  getMode() {
+    if (this.state.gameStage === 'train') return 'train';
+    return 'game';
+  }
+
   generateCardList(onlyImage) {
     this.state.wordData = Utils.shuffle(this.state.wordData);
-    this.cardElements = this.state.wordData.map((word, index) => new Card(index, word, this));
+    this.cardElements = this.state.wordData.map(
+      (word, index) => new Card(index, word, this.getMode(), this),
+    );
 
     this.cardElements.forEach((card) => {
       card.render();
