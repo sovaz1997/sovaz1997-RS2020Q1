@@ -89,7 +89,7 @@ export default class Game {
 
   generateCardList(onlyImage) {
     this.state.wordData = Utils.shuffle(this.state.wordData);
-    this.cardElements = this.state.wordData.map((word, index) => new Card(index, word));
+    this.cardElements = this.state.wordData.map((word, index) => new Card(index, word, this));
 
     this.cardElements.forEach((card) => {
       card.render();
@@ -133,12 +133,33 @@ export default class Game {
   startNewGame() {
     this.state.gameStage = 'in-progress';
     this.resetGameState();
+    this.nextWord();
     this.render();
   }
 
   loadGame() {
     if (this.state.gameStage !== 'train') {
       this.setGameMode();
+    }
+  }
+
+  finishGame() {
+    return this;
+  }
+
+  nextWord() {
+    const { gameState } = this.state;
+
+    if (gameState.leftWords < 0) this.finishGame();
+
+    gameState.currentWord = gameState.leftWords.shift();
+    Utils.playAudio(gameState.currentWord.audioSrc);
+  }
+
+  checkWord(word) {
+    if (this.state.gameStage === 'in-progress') {
+      console.log(word);
+      setTimeout(() => { this.nextWord(); }, 500);
     }
   }
 }

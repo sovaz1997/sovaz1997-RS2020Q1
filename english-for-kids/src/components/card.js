@@ -8,9 +8,10 @@ export default class Card {
     audioSrc: '',
   };
 
-  constructor(index, state) {
+  constructor(index, state, gameObject) {
     this.index = index;
     this.state = { ...this.state, ...state };
+    this.gameObject = gameObject;
     this.createElement();
   }
 
@@ -60,6 +61,12 @@ export default class Card {
       this.el.addEventListener('mouseleave', () => {
         this.flipCard(false);
       });
+    });
+
+    const image = this.el.querySelector('.card__image');
+
+    image.addEventListener('click', () => {
+      this.gameObject.checkWord(this.state.word);
     });
   }
 
