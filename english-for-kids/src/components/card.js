@@ -45,11 +45,9 @@ export default class Card {
   }
 
   addAudioElement() {
-    this.audioFile = new Audio(this.state.audioSrc);
-
     const audioButton = this.el.querySelector('.card__speaker-button');
     audioButton.addEventListener('click', () => {
-      this.audioFile.play();
+      Utils.playAudio(this.state.audioSrc);
     });
   }
 

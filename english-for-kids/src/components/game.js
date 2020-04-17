@@ -15,6 +15,11 @@ export default class Game {
     gameResult: false,
     category: '',
     wordData: [],
+    gameState: {
+      success: 0,
+      fail: 0,
+      leftWords: [],
+    },
   };
 
   constructor(app) {
@@ -103,14 +108,6 @@ export default class Game {
     return cardList;
   }
 
-  reset() {
-    this.state = {
-      gameStarted: false,
-      gameFinished: false,
-      isWin: false,
-    };
-  }
-
   setCategory(categoryName) {
     this.state.wordData = store.getCardsData(categoryName);
   }
@@ -125,8 +122,17 @@ export default class Game {
     this.render();
   }
 
+  resetGameState() {
+    this.state.gameState = {
+      success: 0,
+      fail: 0,
+      leftWords: Utils.shuffle(this.state.wordData),
+    };
+  }
+
   startNewGame() {
     this.state.gameStage = 'in-progress';
+    this.resetGameState();
     this.render();
   }
 
