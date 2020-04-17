@@ -24,7 +24,6 @@ export default class Game {
 
   constructor(app) {
     this.app = app;
-
     this.createElement();
   }
 
@@ -56,20 +55,31 @@ export default class Game {
     return this.gameCheckBox;
   }
 
-  static getGameStarsElement() {
-    return new Stars(10, 'game__progress');
+  getGameStarsElement() {
+    if (this.stars === undefined) {
+      this.stars = new Stars(10, 'game__progress');
+    }
+
+    return this.stars;
+  }
+
+  clearStars() {
+    this.getGameStarsElement().clear();
   }
 
   render() {
     this.page.clearContent();
 
+
+    const gameHeader = Utils.createElement('div', 'game__header');
     this.page.lazyAppendContent(this.getNavigationChainElement().el);
-    this.page.lazyAppendContent(this.getGameTypeCheckBoxElement().el);
+    gameHeader.append(this.getGameTypeCheckBoxElement().el);
+    this.page.lazyAppendContent(gameHeader);
 
     if (this.state.gameStage === 'before-start') {
       this.page.lazyAppendContent(this.startGameButton());
     } else if (this.state.gameStage === 'in-progress') {
-      this.page.lazyAppendContent(Game.getGameStarsElement().el);
+      gameHeader.append(this.getGameStarsElement().el);
       const cardList = this.generateCardList(true);
       this.page.lazyAppendContent(cardList);
     } else if (this.state.gameStage === 'train') {
@@ -128,6 +138,8 @@ export default class Game {
       fail: 0,
       leftWords: Utils.shuffle(this.state.wordData),
     };
+
+    this.clearStars();
   }
 
   startNewGame() {
@@ -158,7 +170,8 @@ export default class Game {
 
   appendResult(isSuccess) {
     this.state.gameState.success += +isSuccess;
-    this.state.gameState.fail += !isSuccess;
+    this.state.gameState.fail += +!isSuccess;
+    this.getGameStarsElement().addStar(isSuccess);
   }
 
   checkWord(word) {
