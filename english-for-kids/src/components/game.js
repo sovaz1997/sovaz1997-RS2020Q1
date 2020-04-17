@@ -220,7 +220,12 @@ export default class Game {
     if (this.state.gameStage === 'in-progress') {
       const success = word === this.state.gameState.currentWord.word;
       this.appendResult(success);
-      if (success) card.unactive();
+
+      if (success) {
+        card.unactive();
+      } else {
+        this.state.gameState.leftWords.push(this.state.gameState.currentWord);
+      }
       this.state.block = true;
       setTimeout(() => {
         this.state.block = false;
