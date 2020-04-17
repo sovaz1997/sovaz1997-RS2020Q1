@@ -8,9 +8,6 @@ import Card from './card';
 
 export default class Game {
   state = {
-    /*
-      Stages: before-start, in-progress, finish, train
-    */
     gameStage: 'train',
     category: '',
     wordData: [],
