@@ -68,6 +68,10 @@ export default class Menu {
     element.append(textElement);
     element.append(innerMenuElement);
 
+    textElement.addEventListener('click', () => {
+      element.classList.toggle('menu__inner--closed');
+    });
+
     return element;
   }
 
@@ -88,7 +92,7 @@ export default class Menu {
 
   addLinkToInnerMenu(menuName, text, callback) {
     const menu = this.state.data[menuName];
-    if (menu.simple) this.addSimpleLinkToData(menu.data, text, callback);
+    if (!menu.simple) this.addSimpleLinkToData(menu.data, text, callback);
     this.render();
   }
 }

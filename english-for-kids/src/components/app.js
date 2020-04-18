@@ -70,6 +70,9 @@ export default class App {
       this.controller('load-categories');
     });
 
+    menu.addInnerMenu('Categories');
+    menu.addLinkToInnerMenu('Categories', 'Test', () => {});
+
     return menu;
   }
 }
