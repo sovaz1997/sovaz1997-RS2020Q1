@@ -68,7 +68,9 @@ module.exports = (env, options) => {
     devServer: {
       contentBase: './dist',
       host: '0.0.0.0',
+      public: '127.0.0.1:8080',
       disableHostCheck: true,
+      port: 8080,
     },
   };
 
