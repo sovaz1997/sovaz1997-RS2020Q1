@@ -27,14 +27,29 @@ export default class Menu {
     }
 
     this.el.append(menuElement);
+    this.close();
+  }
+
+  bindCloseButton(element) {
+    element.addEventListener('click', () => {
+      this.toggle();
+    });
   }
 
   close() {
-    this.el.classList.toggle('menu--closed', true);
+    this.toggle(true);
   }
 
   open() {
-    this.el.classList.toggle('menu--closed', false);
+    this.toggle(false);
+  }
+
+  toggle(value) {
+    if (value === undefined) {
+      this.el.classList.toggle('menu--closed');
+    } else {
+      this.el.classList.toggle('menu--closed', value);
+    }
   }
 
   getMenuElement(data) {

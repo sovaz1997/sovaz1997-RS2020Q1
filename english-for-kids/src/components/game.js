@@ -83,6 +83,10 @@ export default class Game {
     gameHeader.append(this.getGameTypeCheckBoxElement().el);
     this.page.appendContent(gameHeader);
 
+    const menu = this.app.getMenuElement();
+    menu.bindCloseButton(this.page.header.menuButton);
+    this.page.appendContent(menu.el);
+
     if (this.state.gameStage === 'before-start') {
       this.page.appendContent(this.startGameButton());
     } else if (this.state.gameStage === 'in-progress') {

@@ -30,7 +30,9 @@ export default class App {
     const categoriesPage = new Page('Categories', 'Choose one of these categories:', true);
     const categoriesView = new CategoriesView(this);
     categoriesPage.appendContent(categoriesView.el);
-    categoriesPage.appendContent(this.getMenuElement().el);
+    const menu = this.getMenuElement();
+    menu.bindCloseButton(categoriesPage.header.menuButton);
+    categoriesPage.appendContent(menu.el);
     this.addPage('categories', categoriesPage);
   }
 

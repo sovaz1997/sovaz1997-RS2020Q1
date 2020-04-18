@@ -7,13 +7,20 @@ export default class Header {
 
   createElement() {
     this.el = Utils.createElement('header', 'site-header');
-    this.el.innerHTML = Header.template();
+
+    this.createMenuButton();
+    this.createHeaderText();
+
+    this.el.append(this.menuButton);
+    this.el.append(this.headerText);
   }
 
-  static template() {
-    return `
-      <button class="site-header__menu-button"></button>
-      <h1 class="site-header__name">English <span>- for kids</span></h1>
-    `;
+  createMenuButton() {
+    this.menuButton = Utils.createElement('button', 'site-header__menu-button');
+  }
+
+  createHeaderText() {
+    this.headerText = Utils.createElement('h1', 'site-header__name');
+    this.headerText.innerHTML = 'English <span>- for kids</span>';
   }
 }
