@@ -214,6 +214,8 @@ export default class Game {
     this.setGameResult();
     this.state.gameStage = 'finish';
     this.render();
+
+    setTimeout(() => { this.app.controller('load-categories'); }, 3000);
   }
 
   setGameResult() {
