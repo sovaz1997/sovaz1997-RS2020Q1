@@ -11,12 +11,17 @@ export default class Menu {
 
   createElement() {
     this.el = Utils.createElement('div', 'menu');
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Escape') this.close();
+    });
   }
 
   render() {
     this.el.innerHTML = '';
 
     const menuElement = Utils.createElement('ul', 'menu__list');
+
+    const blur = Utils.createElement('div', 'menu__blur');
 
     const { data } = this.state;
 
@@ -26,7 +31,12 @@ export default class Menu {
       menuElement.append(this.getMenuElement(dataObject.values[i]));
     }
 
+    blur.addEventListener('click', () => {
+      this.close();
+    });
+
     this.el.append(menuElement);
+    this.el.append(blur);
     this.close();
   }
 
