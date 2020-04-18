@@ -11,3 +11,21 @@
   margin: 0 auto;
   display: block;
 }
+
+.game__result {
+  padding-top: 30px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game__result-image {
+  width: 100%;
+  max-width: 450px;
+}
+
+.game__result-text {
+  font-size: 24px;
+  font-weight: 500;
+}

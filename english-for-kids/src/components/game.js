@@ -28,15 +28,28 @@ export default class Game {
     this.page = new Page('Game', 'Play in game', false);
   }
 
-  static getResultElement(isWin) {
+  getResultElement() {
+    const { gameState } = this.state;
+
     const result = Utils.createElement('div', 'game__result');
     const resultImage = Utils.createElement('img', 'game__result-image');
-    const resultImageSrc = `./data/img/${isWin ? 'success' : 'failure'}.jpg`;
+    const resultImageSrc = `./data/img/${gameState.isWin ? 'success' : 'failure'}.png`;
+
+    const text = Utils.createElement('p', 'game__result-text');
+    text.innerText = Game.getTextResult(gameState.fail);
 
     resultImage.setAttribute('src', resultImageSrc);
 
     result.append(resultImage);
+    result.append(text);
     return result;
+  }
+
+  static getTextResult(errors) {
+    if (!errors) return 'Great result! Without mistakes!';
+    if (errors < 3) return `Not bad! But you made ${errors} mistakes`;
+
+    return `You could do better: You made ${errors} mistakes.`;
   }
 
   getNavigationChainElement() {
@@ -97,8 +110,7 @@ export default class Game {
       const cardList = this.generateCardList(false);
       this.page.appendContent(cardList);
     } else if (this.state.gameStage === 'finish') {
-      const { isWin } = this.state.gameState;
-      this.page.appendContent(Game.getResultElement(isWin));
+      this.page.appendContent(this.getResultElement());
     }
   }
 
@@ -157,6 +169,7 @@ export default class Game {
       success: 0,
       fail: 0,
       leftWords: Utils.shuffle(this.state.wordData),
+      isWin: false,
     };
 
     this.clearStars();
