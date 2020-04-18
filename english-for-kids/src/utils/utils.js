@@ -32,4 +32,11 @@ export default class Utils {
     Utils.audio.src = src;
     Utils.audio.play();
   }
+
+  static getObjectData(object) {
+    const keys = Object.keys(object);
+    const values = Object.values(object);
+    const { length } = keys;
+    return { keys, values, length };
+  }
 }
