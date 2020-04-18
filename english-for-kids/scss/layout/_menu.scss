@@ -1,12 +1,18 @@
 .menu {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: var(--header-height);
   width: 300px;
+  box-sizing: border-box;
   height: calc(100vh - var(--header-height));
   background-color: $color-blue;
   padding-left: $desktop-padding;
   box-shadow: 3px 0px 4px -1px rgba(0,0,0,0.5);
+  z-index: 100;
+
+  &--closed {
+    left: -310px;
+  }
 }
 
 .menu__list {

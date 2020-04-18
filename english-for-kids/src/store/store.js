@@ -43,6 +43,10 @@ class Store {
       return newCard;
     });
   }
+
+  static getCategories() {
+    return Object.keys(this.storage.cards);
+  }
 }
 
 const store = new Store();
