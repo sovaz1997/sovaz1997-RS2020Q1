@@ -63,7 +63,7 @@ export default class Menu {
 
     element.addEventListener('click', () => {
       this.close();
-      data.callback();
+      setTimeout(data.callback, 300);
     });
     return element;
   }
