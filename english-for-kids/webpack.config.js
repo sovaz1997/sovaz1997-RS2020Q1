@@ -67,6 +67,8 @@ module.exports = (env, options) => {
     },
     devServer: {
       contentBase: './dist',
+      host: '0.0.0.0',
+      disableHostCheck: true,
     },
   };
 
