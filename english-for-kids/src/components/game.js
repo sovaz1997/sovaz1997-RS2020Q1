@@ -47,7 +47,7 @@ export default class Game {
 
   static getTextResult(errors) {
     if (!errors) return 'Great result! Without mistakes!';
-    if (errors < 3) return `Not bad! But you made ${errors} mistakes`;
+    if (errors < 2) return `Not bad! But you made ${errors} mistake`;
 
     return `You could do better: You made ${errors} mistakes.`;
   }
@@ -219,6 +219,12 @@ export default class Game {
   setGameResult() {
     const { gameState } = this.state;
     gameState.isWin = !gameState.fail;
+
+    if (gameState.isWin) {
+      Utils.playAudio('../data/audio/success.mp3');
+    } else {
+      Utils.playAudio('../data/audio/failure.mp3');
+    }
   }
 
   nextWord() {
