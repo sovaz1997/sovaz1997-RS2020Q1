@@ -1,5 +1,5 @@
 .site-header {
-  padding: 0 $desktop-padding;
+  padding: 0 $mobile-padding;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,11 +34,19 @@
 
 
 @include mobile {
+  .site-header {
+    padding: 0 $mobile-padding;
+  }
+
   .site-header__name {
     font-size: 20px;
 
     span {
       font: inherit;
     }
+  }
+
+  .site-header__menu-button {
+    left: $mobile-padding;
   }
 }

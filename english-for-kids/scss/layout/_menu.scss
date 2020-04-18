@@ -94,3 +94,9 @@
   transition: opacity .3s ease-in-out;
   background-color: black;
 }
+
+@include mobile {
+  .menu__list {
+    padding-left: $mobile-padding + 33px;
+  }
+}
