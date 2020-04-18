@@ -12,6 +12,7 @@
   position: fixed;
   width: 100%;
   box-sizing: border-box;
+  min-width: $min-width;
 }
 
 .site-header__menu-button {
@@ -28,5 +29,16 @@
   span {
     font-size: 24px;
     font-weight: 500;
+  }
+}
+
+
+@include mobile {
+  .site-header__name {
+    font-size: 20px;
+
+    span {
+      font: inherit;
+    }
   }
 }

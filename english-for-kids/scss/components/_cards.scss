@@ -22,7 +22,7 @@
     display: none;
   }
 
-  grid-template-columns: repeat(auto-fill, 230px);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 
   .card__face {
     position: static;

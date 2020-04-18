@@ -29,3 +29,14 @@
   font-size: 24px;
   font-weight: 500;
 }
+
+@include mobile {
+  .game__header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game__progress {
+    margin-bottom: 30px;
+  }
+}

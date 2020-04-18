@@ -26,3 +26,9 @@
 .checkbox__button:last-child {
   border-radius: 0 10px 10px 0;
 }
+
+@include mobile {
+  .checkbox__button {
+    width: 100px;
+  }
+}
