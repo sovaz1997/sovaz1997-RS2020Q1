@@ -71,7 +71,14 @@ export default class App {
     });
 
     menu.addInnerMenu('Categories');
-    menu.addLinkToInnerMenu('Categories', 'Test', () => {});
+
+    const categories = store.getCategories();
+
+    categories.forEach((category) => {
+      menu.addLinkToInnerMenu('Categories', category, () => {
+        this.controller('load-cards', { category });
+      });
+    });
 
     return menu;
   }

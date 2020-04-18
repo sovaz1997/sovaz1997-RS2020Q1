@@ -44,8 +44,8 @@ class Store {
     });
   }
 
-  static getCategories() {
-    return Object.keys(this.storage.cards);
+  getCategories() {
+    return Object.keys(this.storage.categories);
   }
 }
 
