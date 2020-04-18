@@ -5,7 +5,8 @@
   transition:
     box-shadow .3s,
     transform .5s,
-    filter .7s ease-out;
+    filter .7s,
+    opacity .7s;
   transform-style: preserve-3d;
   height: 215px;
   box-sizing: border-box;
@@ -15,6 +16,7 @@
 
   &--disable {
     filter: grayscale(100%);
+    opacity: .3;
   }
 }
 
