@@ -103,6 +103,7 @@ export default class Game {
     if (this.state.gameStage === 'before-start') {
       this.page.appendContent(this.startGameButton());
     } else if (this.state.gameStage === 'in-progress') {
+      this.page.appendContent(this.repeatGameButton());
       gameHeader.append(this.getGameStarsElement().el);
       const cardList = this.generateCardList(true);
       this.page.appendContent(cardList);
@@ -115,9 +116,30 @@ export default class Game {
   }
 
   startGameButton() {
-    const el = Utils.createElement('button', 'button', 'game__start-button');
-    el.innerText = 'Start new Game!';
-    el.addEventListener('click', () => { this.startNewGame(); });
+    return Game.createButton(
+      'Start new Game!',
+      () => {
+        this.startNewGame();
+      },
+      'game__start-button',
+    );
+  }
+
+  repeatGameButton() {
+    return Game.createButton(
+      'Repeat word',
+      () => {
+        this.playCurrentWord();
+      },
+      'game__repeat-word-button',
+      'button--orange',
+    );
+  }
+
+  static createButton(text, callback, ...classes) {
+    const el = Utils.createElement('button', 'button', ...classes);
+    el.innerText = text;
+    el.addEventListener('click', () => { callback(); });
     return el;
   }
 
@@ -208,7 +230,11 @@ export default class Game {
     }
 
     gameState.currentWord = gameState.leftWords.shift();
-    Utils.playAudio(gameState.currentWord.audioSrc);
+    this.playCurrentWord();
+  }
+
+  playCurrentWord() {
+    Utils.playAudio(this.state.gameState.currentWord.audioSrc);
   }
 
   static resultSoundPlay(isSuccess) {

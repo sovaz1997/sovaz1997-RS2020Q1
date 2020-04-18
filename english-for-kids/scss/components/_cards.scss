@@ -5,6 +5,7 @@
   gap: 20px;
 
   @include list-reset;
+  padding-top: 20px;
 }
 
 .cards--only-image {
@@ -20,7 +21,7 @@
   .card__face--back {
     display: none;
   }
-  
+
   grid-template-columns: repeat(auto-fill, 230px);
 
   .card__face {
