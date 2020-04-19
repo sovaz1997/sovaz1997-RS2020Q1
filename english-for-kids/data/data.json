@@ -317,6 +317,59 @@
         }
       ],
       "categoryImage": "img/categories/emotions/angry.jpg"
+    },
+    "Transport": {
+      "cards": [
+        {
+          "word": "submarine",
+          "translation": "субмарина",
+          "image": "img/categories/transport/submarine.jpg",
+          "audioSrc": "audio/submarine.mp3"
+        },
+        {
+          "word": "subway",
+          "translation": "метро",
+          "image": "img/categories/transport/subway.jpg",
+          "audioSrc": "audio/subway.mp3"
+        },
+        {
+          "word": "taxi",
+          "translation": "такси",
+          "image": "img/categories/transport/taxi.jpg",
+          "audioSrc": "audio/taxi.mp3"
+        },
+        {
+          "word": "tractor",
+          "translation": "трактор",
+          "image": "img/categories/transport/tractor.jpg",
+          "audioSrc": "audio/tractor.mp3"
+        },
+        {
+          "word": "train",
+          "translation": "поезд",
+          "image": "img/categories/transport/train.jpg",
+          "audioSrc": "audio/train.mp3"
+        },
+        {
+          "word": "truck",
+          "translation": "грузовик",
+          "image": "img/categories/transport/truck.jpg",
+          "audioSrc": "audio/truck.mp3"
+        },
+        {
+          "word": "van",
+          "translation": "фургон",
+          "image": "img/categories/transport/van.jpg",
+          "audioSrc": "audio/van.mp3"
+        },
+        {
+          "word": "yacht",
+          "translation": "яхта",
+          "image": "img/categories/transport/yacht.jpg",
+          "audioSrc": "audio/yacht.mp3"
+        }
+      ],
+      "categoryImage": "img/categories/transport/truck.jpg"
     }
   }
 }
