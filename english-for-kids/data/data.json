@@ -370,6 +370,59 @@
         }
       ],
       "categoryImage": "img/categories/transport/truck.jpg"
+    },
+    "Fruits": {
+      "cards": [
+        {
+          "word": "peach",
+          "translation": "персик",
+          "image": "img/categories/fruits/peach.jpg",
+          "audioSrc": "audio/peach.mp3"
+        },
+        {
+          "word": "watermelon",
+          "translation": "арбуз",
+          "image": "img/categories/fruits/watermelon.jpg",
+          "audioSrc": "audio/watermelon.mp3"
+        },
+        {
+          "word": "pear",
+          "translation": "груша",
+          "image": "img/categories/fruits/pear.jpg",
+          "audioSrc": "audio/pear.mp3"
+        },
+        {
+          "word": "pineapple",
+          "translation": "ананас",
+          "image": "img/categories/fruits/pineapple.jpg",
+          "audioSrc": "audio/pineapple.mp3"
+        },
+        {
+          "word": "plum",
+          "translation": "слива",
+          "image": "img/categories/fruits/plum.jpg",
+          "audioSrc": "audio/plum.mp3"
+        },
+        {
+          "word": "pomegranate",
+          "translation": "гранат",
+          "image": "img/categories/fruits/pomegranate.jpg",
+          "audioSrc": "audio/pomegranate.mp3"
+        },
+        {
+          "word": "raspberries",
+          "translation": "малина",
+          "image": "img/categories/fruits/raspberries.jpg",
+          "audioSrc": "audio/raspberry.mp3"
+        },
+        {
+          "word": "strawberry",
+          "translation": "клубника",
+          "image": "img/categories/fruits/strawberry.jpg",
+          "audioSrc": "audio/strawberry.mp3"
+        }
+      ],
+      "categoryImage": "img/categories/fruits/pear.jpg"
     }
   }
 }
