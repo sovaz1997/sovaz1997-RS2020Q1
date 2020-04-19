@@ -9,9 +9,10 @@
   user-select: none;
   @include button-shadow;
 
-  @include hover-change-color;
+  @include hover-change-color($color-green);
 }
 
 .button--orange {
-  background-color: #FF9900;
+  background-color: $color-orange;
+  @include hover-change-color($color-orange);
 }

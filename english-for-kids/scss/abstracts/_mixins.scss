@@ -38,9 +38,9 @@
   }
 }
 
-@mixin hover-change-color {
+@mixin hover-change-color($color) {
   transition: .3s background-color;
   &:hover {
-    background-color: darken($color-green, 10%);
+    background-color: darken($color, 10%);
   }
 }
