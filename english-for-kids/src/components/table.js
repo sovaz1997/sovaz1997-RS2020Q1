@@ -49,6 +49,13 @@ export default class Table {
 
     el.addEventListener('click', (e) => {
       const { index } = e.target.dataset;
+
+      if (this.state.sortIndex === index) {
+        this.state.ascending = !this.state.ascending;
+      } else {
+        this.state.ascending = true;
+      }
+
       this.state.sortIndex = index;
       this.render();
     });
@@ -76,6 +83,7 @@ export default class Table {
         else res = 0;
       }
 
+      if (!this.state.ascending) return -res;
       return res;
     });
   }
