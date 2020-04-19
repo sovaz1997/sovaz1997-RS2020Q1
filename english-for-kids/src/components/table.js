@@ -76,7 +76,7 @@ export default class Table {
     this.state.data = this.state.data.sort((a, b) => {
       let res = 0;
       if (sortType === 'number') {
-        res = Number(b[sortIndex]) - Number(a[sortIndex]);
+        res = Utils.getNumber(b[sortIndex]) - Utils.getNumber(a[sortIndex]);
       } else if (sortType === 'string') {
         if (a[sortIndex] < b[sortIndex]) res = -1;
         else if (a[sortIndex] > b[sortIndex]) res = 1;

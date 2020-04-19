@@ -37,4 +37,9 @@ export default class Utils {
     const { length } = keys;
     return { keys, values, length };
   }
+
+  static getNumber(str) {
+    const res = str.replace(/\D/g, '');
+    return Number(res);
+  }
 }
