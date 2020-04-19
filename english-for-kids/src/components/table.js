@@ -13,16 +13,18 @@ export default class Table {
   }
 
   createElement() {
-    this.el = Utils.createElement('table', 'table');
+    this.el = Utils.createElement('div', 'table__wrapper');
+    this.tableElement = Utils.createElement('table', 'table');
+    this.el.append(this.tableElement);
   }
 
   render() {
-    this.el.innerHTML = '';
+    this.tableElement.innerHTML = '';
     this.sortData();
 
-    this.el.append(this.getHeaderElement());
+    this.tableElement.append(this.getHeaderElement());
     this.state.data.forEach((element) => {
-      this.el.append(Table.getFieldElement(element));
+      this.tableElement.append(Table.getFieldElement(element));
     });
   }
 
