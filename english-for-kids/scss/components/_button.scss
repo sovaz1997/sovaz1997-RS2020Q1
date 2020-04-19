@@ -8,6 +8,8 @@
   outline: none;
   user-select: none;
   @include button-shadow;
+
+  @include hover-change-color;
 }
 
 .button--orange {

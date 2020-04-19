@@ -5,6 +5,7 @@ import store from '../store/store';
 import Game from './game';
 import Menu from './menu';
 import Stats from './stats';
+import buttonList from './button-list';
 
 export default class App {
   state = {
@@ -53,8 +54,13 @@ export default class App {
 
     const table = Stats.getTable();
     this.statisticsPage.appendContent(table);
-    this.statisticsPage.appendContent(App.getClearStatsButton());
-    this.statisticsPage.appendContent(this.getDifficultGameButon());
+
+    const buttons = buttonList(
+      App.getClearStatsButton(),
+      this.getDifficultGameButon(),
+    );
+
+    this.statisticsPage.appendContent(buttons);
     this.addPage('statistics', this.statisticsPage);
   }
 
