@@ -1,4 +1,5 @@
 .menu {
+  user-select: none;
   &--closed {
     .menu__list {
       left: -310px;

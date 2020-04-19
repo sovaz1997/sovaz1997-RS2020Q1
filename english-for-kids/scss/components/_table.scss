@@ -6,6 +6,7 @@
 .table__column {
   cursor: pointer;
   font-weight: 600;
+  user-select: none;
 }
 
 .table__wrapper {
