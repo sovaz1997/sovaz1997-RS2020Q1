@@ -18,8 +18,41 @@ export default class Table {
 
   render() {
     this.el.innerHTML = '';
-
     this.sortData();
+
+    this.el.append(this.getHeaderElement());
+    this.state.data.forEach((element) => {
+      this.el.append(Table.getFieldElement(element));
+    });
+  }
+
+
+  getHeaderElement() {
+    const el = Utils.createElement('tr', 'table__row');
+    this.state.columns.forEach((column) => {
+      el.append(Table.getColumnCell(column));
+    });
+    return el;
+  }
+
+  static getFieldElement(field) {
+    const el = Utils.createElement('tr', 'table__row');
+    field.forEach((element) => {
+      el.append(Table.getFieldCell(element));
+    });
+    return el;
+  }
+
+  static getColumnCell(text) {
+    const el = Utils.createElement('td', 'table__column');
+    el.innerText = text;
+    return el;
+  }
+
+  static getFieldCell(text) {
+    const el = Utils.createElement('td', 'table__cell');
+    el.innerText = text;
+    return el;
   }
 
   sortData() {
