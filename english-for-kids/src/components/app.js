@@ -53,6 +53,7 @@ export default class App {
 
     const table = Stats.getTable();
     this.statisticsPage.appendContent(table);
+    this.statisticsPage.appendContent(App.getClearStatsButton());
     this.addPage('statistics', this.statisticsPage);
   }
 
@@ -104,5 +105,14 @@ export default class App {
     });
 
     return menu;
+  }
+
+  static getClearStatsButton() {
+    return Utils.createButton(
+      'Reset stats',
+      () => {
+        Stats.clearStats();
+      },
+    );
   }
 }

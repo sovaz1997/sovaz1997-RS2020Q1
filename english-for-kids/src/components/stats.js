@@ -38,6 +38,7 @@ export default class Stats {
   static clearStats() {
     Stats.loadDefaults();
     Stats.writeStats();
+    Stats.updateTableView();
   }
 
   static createTable() {

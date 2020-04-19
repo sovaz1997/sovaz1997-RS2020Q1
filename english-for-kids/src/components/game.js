@@ -117,7 +117,7 @@ export default class Game {
   }
 
   startGameButton() {
-    return Game.createButton(
+    return Utils.createButton(
       'Start new Game!',
       () => {
         this.startNewGame();
@@ -127,7 +127,7 @@ export default class Game {
   }
 
   repeatGameButton() {
-    return Game.createButton(
+    return Utils.createButton(
       'Repeat word',
       () => {
         this.playCurrentWord();
@@ -135,13 +135,6 @@ export default class Game {
       'game__repeat-word-button',
       'button--orange',
     );
-  }
-
-  static createButton(text, callback, ...classes) {
-    const el = Utils.createElement('button', 'button', ...classes);
-    el.innerText = text;
-    el.addEventListener('click', () => { callback(); });
-    return el;
   }
 
   getMode() {

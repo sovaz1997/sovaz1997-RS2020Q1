@@ -42,4 +42,11 @@ export default class Utils {
     const res = str.replace(/\D/g, '');
     return Number(res);
   }
+
+  static createButton(text, callback, ...classes) {
+    const el = Utils.createElement('button', 'button', ...classes);
+    el.innerText = text;
+    el.addEventListener('click', () => { callback(); });
+    return el;
+  }
 }
