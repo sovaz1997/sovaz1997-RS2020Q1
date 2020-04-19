@@ -48,18 +48,21 @@ class Store {
     return Object.keys(this.storage.categories);
   }
 
-  getWordsInCategories() {
+  getDefaultStats() {
     const categories = this.getCategories();
-    const res = [];
+    const res = {};
     categories.forEach((category) => {
       const words = this.getCardsData(category);
 
       for (let i = 0; i < words.length; i += 1) {
-        res.push({
+        res[words[i].word] = {
           category,
           word: words[i].word,
           translation: words[i].translation,
-        });
+          clicksInTrain: 0,
+          success: 0,
+          fail: 0,
+        };
       }
     });
 

@@ -5,6 +5,7 @@ import Stars from './stars';
 import store from '../store/store';
 import Utils from '../utils/utils';
 import Card from './card';
+import Stats from './stats';
 
 export default class Game {
   state = {
@@ -266,6 +267,8 @@ export default class Game {
     if (this.state.gameStage === 'in-progress') {
       const success = word === this.state.gameState.currentWord.word;
       this.appendResult(success);
+
+      Stats.addWord(this.state.gameState.currentWord.word, 'game', success);
 
       if (success) {
         card.unactive();

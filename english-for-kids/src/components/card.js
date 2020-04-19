@@ -1,4 +1,5 @@
 import Utils from '../utils/utils';
+import Stats from './stats';
 
 export default class Card {
   state = {
@@ -60,6 +61,7 @@ export default class Card {
     this.el.addEventListener('click', () => {
       if (this.mode === 'train') {
         this.flipCard(true);
+        Stats.addWord(this.state.word, 'train');
       } else if (this.state.active) {
         this.gameObject.checkWord(this.state.word, this);
       }
