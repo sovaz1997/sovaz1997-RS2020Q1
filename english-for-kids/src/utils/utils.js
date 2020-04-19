@@ -1,6 +1,4 @@
 export default class Utils {
-  static audio = new Audio();
-
   static createElement(tagName, ...classList) {
     const el = document.createElement(tagName);
     if (classList.length) {
@@ -29,8 +27,8 @@ export default class Utils {
   }
 
   static playAudio(src) {
-    Utils.audio.src = src;
-    Utils.audio.play();
+    const player = new Audio(src);
+    player.play();
   }
 
   static getObjectData(object) {
