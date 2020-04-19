@@ -48,6 +48,8 @@ export default class Stats {
     Stats.table.addColumn('word', 'Word', 'string');
     Stats.table.addColumn('translation', 'Translation', 'string');
     Stats.table.addColumn('train-clicks', 'Clicks in train', 'number');
+    Stats.table.addColumn('successes', 'Successes', 'number');
+    Stats.table.addColumn('fails', 'Fails', 'number');
     Stats.table.addColumn('success-rate', 'Success rate (%)', 'number');
   }
 
@@ -61,6 +63,8 @@ export default class Stats {
         data.values[i].category,
         data.values[i].word,
         data.values[i].translation,
+        data.values[i].success,
+        data.values[i].fail,
         data.values[i].clicksInTrain,
         `${Stats.getSuccessRate(data.values[i])}%`,
       ]);
