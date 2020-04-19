@@ -122,7 +122,7 @@ export default class App {
 
   static getClearStatsButton() {
     return Utils.createButton(
-      'Reset stats',
+      'Reset',
       () => {
         Stats.clearStats();
       },
@@ -131,7 +131,7 @@ export default class App {
 
   getDifficultGameButon() {
     return Utils.createButton(
-      'Train difficult words',
+      'Repeat difficult words',
       () => {
         this.controller('load-cards', { difficult: true });
       },
