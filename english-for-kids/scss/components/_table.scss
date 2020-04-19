@@ -1,0 +1,14 @@
+.table {
+  margin: 0 auto 20px;
+  min-width: 700px;
+}
+
+.table__column {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.table__wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
