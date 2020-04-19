@@ -26,6 +26,7 @@ export default class App {
   createPages() {
     this.createCategoriesPage();
     this.createGamePage();
+    this.createStatisticsPage();
   }
 
   createCategoriesPage() {
@@ -41,6 +42,13 @@ export default class App {
   createGamePage() {
     this.game = new Game(this);
     this.addPage('game', this.game.page);
+  }
+
+  createStatisticsPage() {
+    this.statisticsPage = new Page('Stats', 'See your stats here:', true);
+    const table = Stats.getTable();
+    this.statisticsPage.appendContent(table);
+    this.addPage('statistics', this.statisticsPage);
   }
 
   addPage(name, page) {

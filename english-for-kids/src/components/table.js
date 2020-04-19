@@ -26,7 +26,6 @@ export default class Table {
     });
   }
 
-
   getHeaderElement() {
     const el = Utils.createElement('tr', 'table__row');
     this.state.columns.forEach((column) => {
@@ -78,5 +77,9 @@ export default class Table {
 
   addField(field) {
     this.state.data.push(field);
+  }
+
+  clearData() {
+    this.state.data = [];
   }
 }
