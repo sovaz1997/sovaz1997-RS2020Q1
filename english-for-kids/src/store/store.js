@@ -34,14 +34,15 @@ class Store {
   getCardsData(categoryName) {
     const { cards } = this.storage.categories[categoryName];
 
-    return cards.map((card) => {
-      const newCard = {
-        ...card,
-        image: Store.transformPath(card.image),
-        audioSrc: Store.transformPath(card.audioSrc),
-      };
-      return newCard;
-    });
+    return cards.map((card) => Store.getTransformCard(card));
+  }
+
+  static getTransformCard(card) {
+    return {
+      ...card,
+      image: Store.transformPath(card.image),
+      audioSrc: Store.transformPath(card.audioSrc),
+    };
   }
 
   getCategories() {
@@ -49,7 +50,9 @@ class Store {
   }
 
   getCard(category, word) {
-    return this.storage.categories[category].cards.find((el) => word === el.word);
+    return Store.getTransformCard(
+      this.storage.categories[category].cards.find((el) => word === el.word),
+    );
   }
 
   getDefaultStats() {

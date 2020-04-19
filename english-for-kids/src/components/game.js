@@ -170,6 +170,11 @@ export default class Game {
     this.state.wordData = store.getCardsData(categoryName);
   }
 
+  customLoad(categoryName, words) {
+    this.state.category = categoryName;
+    this.state.wordData = words;
+  }
+
   setTrainMode() {
     this.state.gameStage = 'train';
     this.render();

@@ -54,6 +54,7 @@ export default class App {
     const table = Stats.getTable();
     this.statisticsPage.appendContent(table);
     this.statisticsPage.appendContent(App.getClearStatsButton());
+    this.statisticsPage.appendContent(this.getDifficultGameButon());
     this.addPage('statistics', this.statisticsPage);
   }
 
@@ -75,7 +76,13 @@ export default class App {
       this.loadPage('categories');
     } else if (command === 'load-cards') {
       this.loadPage('game');
-      this.game.setCategory(props.category);
+
+      if (props.difficult) {
+        this.game.customLoad('Difficult', Stats.getDifficult());
+      } else {
+        this.game.setCategory(props.category);
+      }
+
       this.game.loadGame();
       this.game.render();
     } else if (command === 'load-statistics') {
@@ -112,6 +119,15 @@ export default class App {
       'Reset stats',
       () => {
         Stats.clearStats();
+      },
+    );
+  }
+
+  getDifficultGameButon() {
+    return Utils.createButton(
+      'Train difficult words',
+      () => {
+        this.controller('load-cards', { difficult: true });
       },
     );
   }
