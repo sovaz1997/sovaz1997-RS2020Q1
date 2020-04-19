@@ -48,6 +48,10 @@ class Store {
     return Object.keys(this.storage.categories);
   }
 
+  getCard(category, word) {
+    return this.storage.categories[category].cards.find((el) => word === el.word);
+  }
+
   getDefaultStats() {
     const categories = this.getCategories();
     const res = {};

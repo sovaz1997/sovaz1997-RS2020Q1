@@ -79,4 +79,13 @@ export default class Stats {
     Stats.updateTableView();
     return Stats.table.el;
   }
+
+  static getDifficult() {
+    const statArr = Utils.getObjectData(Stats.data).values;
+    return statArr
+      .filter((el) => el.success + el.fail && el.fail > 0)
+      .sort((a, b) => b.fail / (b.fail + b.success) - a.fail / (a.fail + a.success))
+      .slice(0, 8)
+      .map((el) => store.getCard(el.category, el.word));
+  }
 }
