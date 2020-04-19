@@ -4,6 +4,7 @@ import CategoriesView from './categories-view';
 import store from '../store/store';
 import Game from './game';
 import Menu from './menu';
+import Stats from './stats';
 
 export default class App {
   state = {
@@ -14,6 +15,7 @@ export default class App {
     this.createElement();
     this.createPages();
     this.loadPage('categories');
+    Stats.loadStats();
   }
 
   loadPage(pageName) {

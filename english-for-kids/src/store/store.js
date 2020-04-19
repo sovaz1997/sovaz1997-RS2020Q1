@@ -47,6 +47,24 @@ class Store {
   getCategories() {
     return Object.keys(this.storage.categories);
   }
+
+  getWordsInCategories() {
+    const categories = this.getCategories();
+    const res = [];
+    categories.forEach((category) => {
+      const words = this.getCardsData(category);
+
+      for (let i = 0; i < words.length; i += 1) {
+        res.push({
+          category,
+          word: words[i].word,
+          translation: words[i].translation,
+        });
+      }
+    });
+
+    return res;
+  }
 }
 
 const store = new Store();

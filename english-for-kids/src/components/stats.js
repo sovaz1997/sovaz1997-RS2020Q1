@@ -1,20 +1,24 @@
+import store from '../store/store';
+
 export default class Stats {
-  state = {
-    data: {},
-  }
+  static data = {};
 
-  constructor() {
-    this.loadStats();
-  }
-
-  loadStats() {
+  static loadStats() {
     const data = window.localStorage.getItem('stats');
     if (data) {
-      this.state.data = JSON.parse(data);
+      Stats.data = JSON.parse(data);
+    } else {
+      Stats.loadDefaults();
     }
+
+    console.log(Stats.data);
   }
 
-  writeStats() {
-    window.localStorage.setItem(JSON.stringify(this.state.data));
+  static loadDefaults() {
+    Stats.data = store.getWordsInCategories();
+  }
+
+  static writeStats() {
+    window.localStorage.setItem(JSON.stringify(Stats.data));
   }
 }
