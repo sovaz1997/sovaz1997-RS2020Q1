@@ -1,5 +1,5 @@
 {
-  "name": "virtual-keyboard",
+  "name": "english-for-kids",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sovaz1997/virtual-keyboard.git"
+    "url": "git+https://github.com/rolling-scopes-school/sovaz1997-RS2020Q1.git"
   },
   "author": "",
   "license": "ISC",
@@ -49,7 +49,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "bugs": {
-    "url": "https://github.com/sovaz1997/virtual-keyboard/issues"
+    "url": "https://github.com/rolling-scopes-school/sovaz1997-RS2020Q1/issues"
   },
-  "homepage": "https://github.com/sovaz1997/virtual-keyboard#readme"
+  "homepage": "https://github.com/rolling-scopes-school/sovaz1997-RS2020Q1#readme"
 }
