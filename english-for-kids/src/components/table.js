@@ -2,7 +2,7 @@ import Utils from '../utils/utils';
 
 export default class Table {
   state = {
-    fields: [],
+    columns: [],
     data: [],
     sortIndex: 0,
     ascending: true,
@@ -24,7 +24,7 @@ export default class Table {
 
   sortData() {
     const { sortIndex } = this.state;
-    const { sortType } = this.state.fields[sortIndex];
+    const { sortType } = this.state.columns[sortIndex];
     this.state.data = this.state.data.sort((a, b) => {
       let res = 0;
       if (sortType === 'number') {
@@ -39,7 +39,11 @@ export default class Table {
     });
   }
 
-  addField(name, text, sortType) {
-    this.state.fields.push({ name, text, sortType });
+  addColumn(name, text, sortType) {
+    this.state.columns.push({ name, text, sortType });
+  }
+
+  addField(field) {
+    this.state.data.push(field);
   }
 }
