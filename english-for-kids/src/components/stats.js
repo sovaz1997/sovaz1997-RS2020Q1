@@ -21,6 +21,7 @@ export default class Stats {
 
   static writeStats() {
     window.localStorage.setItem('stats', JSON.stringify(Stats.data));
+    Stats.updateTableView();
   }
 
   static addWord(word, mode, success) {
@@ -54,7 +55,6 @@ export default class Stats {
     Stats.table.clearData();
     const data = Utils.getObjectData(Stats.data);
 
-
     for (let i = 0; i < data.length; i += 1) {
       Stats.table.addField([
         data.values[i].category,
@@ -71,7 +71,7 @@ export default class Stats {
   static getSuccessRate(dataField) {
     const sum = dataField.success + dataField.fail;
     if (!sum) return 0;
-    return dataField.success / sum;
+    return Math.round(100 * (dataField.success / sum));
   }
 
   static getTable() {

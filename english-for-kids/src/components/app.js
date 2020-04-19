@@ -13,9 +13,9 @@ export default class App {
 
   constructor() {
     this.createElement();
+    Stats.loadStats();
     this.createPages();
     this.loadPage('categories');
-    Stats.loadStats();
   }
 
   loadPage(pageName) {
@@ -46,6 +46,11 @@ export default class App {
 
   createStatisticsPage() {
     this.statisticsPage = new Page('Stats', 'See your stats here:', true);
+
+    const menu = this.getMenuElement();
+    menu.bindCloseButton(this.statisticsPage.header.menuButton);
+    this.statisticsPage.appendContent(menu.el);
+
     const table = Stats.getTable();
     this.statisticsPage.appendContent(table);
     this.addPage('statistics', this.statisticsPage);
@@ -72,6 +77,8 @@ export default class App {
       this.game.setCategory(props.category);
       this.game.loadGame();
       this.game.render();
+    } else if (command === 'load-statistics') {
+      this.loadPage('statistics');
     }
   }
 
@@ -90,6 +97,10 @@ export default class App {
       menu.addLinkToInnerMenu('Categories', category, () => {
         this.controller('load-cards', { category });
       });
+    });
+
+    menu.addSimpleLink('Statistics', () => {
+      this.controller('load-statistics');
     });
 
     return menu;
