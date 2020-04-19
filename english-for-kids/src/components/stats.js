@@ -63,9 +63,9 @@ export default class Stats {
         data.values[i].category,
         data.values[i].word,
         data.values[i].translation,
+        String(data.values[i].clicksInTrain),
         String(data.values[i].success),
         String(data.values[i].fail),
-        String(data.values[i].clicksInTrain),
         `${Stats.getSuccessRate(data.values[i])}%`,
       ]);
     }
