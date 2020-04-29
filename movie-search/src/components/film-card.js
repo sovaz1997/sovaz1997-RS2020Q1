@@ -7,10 +7,7 @@ const FilmCard = ({
     Utils.createElement('h3', ['film-card__name'], [name]),
     Utils.createImage(posterSrc, name, ['film-card__poster']),
     Utils.createElement('span', ['film-card__release'], [releaseYear]),
-    Utils.createElement('div', ['film-card__rating rating'], [
-      Utils.createElement('div', ['rating__star']),
-      Utils.createElement('div', ['rating__value'], [rating]),
-    ]),
+    Utils.createElement('div', ['film-card__rating'], [rating]),
   ])
 );
 
