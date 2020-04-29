@@ -1,4 +1,5 @@
 import Utils from '../utils/utils';
+import Header from './header';
 
 export default class App {
   constructor() {
@@ -10,14 +11,8 @@ export default class App {
     this.el = Utils.createElement('div', ['app']);
   }
 
-  static createHeader() {
-    return Utils.createElement('header', ['site-header'], [
-      Utils.createElement('h1', ['site-header__name'], ['Movie Search']),
-    ]);
-  }
-
   render() {
     this.el.innerHTML = '';
-    this.el.append(App.createHeader());
+    this.el.append(Header());
   }
 }
