@@ -16,4 +16,11 @@ export default class Utils {
 
     return el;
   }
+
+  static createImage(src, alt, classList) {
+    const el = Utils.createElement('img', classList);
+    el.setAttribute('src', src);
+    el.setAttribute('alt', alt);
+    return el;
+  }
 }

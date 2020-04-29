@@ -1,14 +1,11 @@
 import Utils from '../utils/utils';
 import Header from './header';
-import Data from '../utils/data';
+import FilmCard from './film-card';
 
 export default class App {
   constructor() {
     this.createElement();
     this.render();
-    Data.getSearchResults('dream', 1).then((content) => {
-      console.log(content);
-    });
   }
 
   createElement() {
@@ -18,5 +15,8 @@ export default class App {
   render() {
     this.el.innerHTML = '';
     this.el.append(Header());
+    this.el.append(FilmCard({
+      name: 'Test', posterSrc: '.', releaseYear: '2007', rating: '9.5',
+    }));
   }
 }
