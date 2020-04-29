@@ -1,11 +1,9 @@
 export default class Utils {
-  static createElement(tagName, ...classList) {
+  static createElement(tagName, classList) {
     const el = document.createElement(tagName);
-    if (classList.length) {
-      for (let i = 0; i < classList.length; i += 1) {
-        el.classList.add(classList[i]);
-      }
-    }
+
+    if (classList) el.className = classList.split(' ');
+
     return el;
   }
 }

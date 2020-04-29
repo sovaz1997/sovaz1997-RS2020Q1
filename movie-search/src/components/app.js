@@ -1,3 +1,5 @@
+import Utils from '../utils/utils';
+
 export default class App {
   state = {
     pages: {},
