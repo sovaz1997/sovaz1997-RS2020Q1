@@ -1,8 +1,8 @@
 export default class Utils {
-  static createElement(tagName, classList, childs) {
+  static createElement(tagName, className, childs) {
     const el = document.createElement(tagName);
 
-    if (classList) el.className = classList.join(' ');
+    if (className) el.className = className;
 
     if (childs) {
       childs.forEach((child) => {
@@ -17,8 +17,8 @@ export default class Utils {
     return el;
   }
 
-  static createImage(src, alt, classList) {
-    const el = Utils.createElement('img', classList);
+  static createImage(src, alt, className) {
+    const el = Utils.createElement('img', className);
     el.setAttribute('src', src);
     el.setAttribute('alt', alt);
     return el;

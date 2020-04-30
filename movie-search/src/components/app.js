@@ -9,7 +9,7 @@ export default class App {
   }
 
   createElement() {
-    this.el = Utils.createElement('div', ['app']);
+    this.el = Utils.createElement('div', 'app');
   }
 
   render() {
