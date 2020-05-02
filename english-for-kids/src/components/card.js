@@ -40,7 +40,7 @@ export default class Card {
       <div class="card__face card__face--front">
         <span class="card__word">${word}</span>
         <img class="card__image" src="${image}">
-        <button class="card__speaker-button"></button>
+        <button class="card__flip-button"></button>
       </div>
       <div class="card__face card__face--back">
         <span class="card__word">${translation}</span>
@@ -50,18 +50,18 @@ export default class Card {
   }
 
   addAudioElement() {
-    const audioButton = this.el.querySelector('.card__speaker-button');
+    const audioButton = this.el.querySelector('.card__flip-button');
     audioButton.addEventListener('click', (e) => {
       e.stopPropagation();
-      Utils.playAudio(this.state.audioSrc);
+      this.flipCard(true);
+      Stats.addWord(this.state.word, 'train');
     });
   }
 
   addEventListeners() {
     this.el.addEventListener('click', () => {
       if (this.mode === 'train') {
-        this.flipCard(true);
-        Stats.addWord(this.state.word, 'train');
+        Utils.playAudio(this.state.audioSrc);
       } else if (this.state.active) {
         this.gameObject.checkWord(this.state.word, this);
       }

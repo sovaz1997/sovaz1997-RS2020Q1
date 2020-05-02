@@ -45,7 +45,7 @@
   transform: rotateY(180deg);
 }
 
-.card--flipped .card__speaker-button {
+.card--flipped .card__flip-button {
   display: none;
 }
 
@@ -62,7 +62,7 @@
   display: block;
 }
 
-.card__speaker-button {
+.card__flip-button {
   position: absolute;
   width: 100%;
   bottom: 17px;
@@ -73,8 +73,4 @@
 
 .card__flip-button {
   @include image-button(20px, 20px, 'icons/flip.svg');
-}
-
-.card__speaker-button {
-  @include image-button(16px, 20px, 'icons/speaker.svg');
 }
