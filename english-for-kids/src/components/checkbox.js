@@ -7,13 +7,12 @@ export default class CheckBox {
   };
 
   constructor(...extraClasses) {
-    this.extraClasses = extraClasses;
-    this.createElement();
+    this.createElement(extraClasses);
     this.addEventListeners();
   }
 
-  createElement() {
-    this.el = Utils.createElement('div', 'checkbox', ...this.extraClasses);
+  createElement(classes) {
+    this.el = Utils.createElement('div', 'checkbox', ...classes);
   }
 
   render() {
