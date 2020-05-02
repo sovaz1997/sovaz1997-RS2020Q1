@@ -15,6 +15,7 @@ export default class Card {
     this.state = { ...this.state, ...state };
     this.gameObject = gameObject;
     this.mode = mode;
+    this.canFlip = true;
     this.createElement();
   }
 
@@ -68,12 +69,25 @@ export default class Card {
     });
 
     this.el.addEventListener('mouseleave', () => {
+      this.mouseInCard = false;
       this.flipCard(false);
+    });
+
+    this.el.addEventListener('mouseenter', () => {
+      this.mouseInCard = true;
     });
   }
 
   flipCard(value) {
-    this.el.classList.toggle('card--flipped', value);
+    if (value) {
+      this.canFlip = false;
+      this.el.classList.toggle('card--flipped', value);
+      setTimeout(() => { this.canFlip = true; this.flipCard(this.mouseInCard); }, 700);
+    }
+
+    if (this.canFlip) {
+      this.el.classList.toggle('card--flipped', value);
+    }
   }
 
   toggleActiveClass() {
