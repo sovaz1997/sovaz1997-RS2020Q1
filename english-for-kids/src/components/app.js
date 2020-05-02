@@ -92,6 +92,7 @@ export default class App {
       this.game.loadGame();
       this.game.render();
     } else if (command === 'load-statistics') {
+      Stats.updateTableView();
       this.loadPage('statistics');
     }
   }

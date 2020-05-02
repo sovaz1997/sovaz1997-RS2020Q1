@@ -21,7 +21,6 @@ export default class Stats {
 
   static writeStats() {
     window.localStorage.setItem('stats', JSON.stringify(Stats.data));
-    Stats.updateTableView();
   }
 
   static addWord(word, mode, success) {
