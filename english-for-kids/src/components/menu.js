@@ -100,24 +100,21 @@ export default class Menu {
     return element;
   }
 
-  addSimpleLinkToData(data, text, callback) {
+  static addSimpleLinkToData(data, text, callback) {
     const dataObject = data;
     dataObject[text] = { simple: true, text, callback };
-    this.render();
   }
 
   addSimpleLink(text, callback) {
-    this.addSimpleLinkToData(this.state.data, text, callback);
+    Menu.addSimpleLinkToData(this.state.data, text, callback);
   }
 
   addInnerMenu(text) {
     this.state.data[text] = ({ simple: false, text, data: [] });
-    this.render();
   }
 
   addLinkToInnerMenu(menuName, text, callback) {
     const menu = this.state.data[menuName];
-    if (!menu.simple) this.addSimpleLinkToData(menu.data, text, callback);
-    this.render();
+    if (!menu.simple) Menu.addSimpleLinkToData(menu.data, text, callback);
   }
 }

@@ -118,6 +118,8 @@ export default class App {
       this.controller('load-statistics');
     });
 
+    menu.render();
+
     return menu;
   }
 
