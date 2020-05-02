@@ -7,6 +7,12 @@ import Menu from './menu';
 import Stats from './stats';
 import buttonList from './button-list';
 
+const PAGES = {
+  CATEGORIES: 'categories',
+  STATISTICS: 'statistics',
+  GAME: 'game',
+};
+
 export default class App {
   state = {
     pages: {},
@@ -16,7 +22,7 @@ export default class App {
     this.createElement();
     Stats.loadStats();
     this.createPages();
-    this.loadPage('categories');
+    this.loadPage(PAGES.CATEGORIES);
   }
 
   loadPage(pageName) {
@@ -37,12 +43,12 @@ export default class App {
     const menu = this.getMenuElement();
     menu.bindCloseButton(categoriesPage.header.menuButton);
     categoriesPage.appendContent(menu.el);
-    this.addPage('categories', categoriesPage);
+    this.addPage(PAGES.CATEGORIES, categoriesPage);
   }
 
   createGamePage() {
     this.game = new Game(this);
-    this.addPage('game', this.game.page);
+    this.addPage(PAGES.GAME, this.game.page);
   }
 
   createStatisticsPage() {
@@ -61,7 +67,7 @@ export default class App {
     );
 
     this.statisticsPage.appendContent(buttons);
-    this.addPage('statistics', this.statisticsPage);
+    this.addPage(PAGES.STATISTICS, this.statisticsPage);
   }
 
   addPage(name, page) {
@@ -93,7 +99,7 @@ export default class App {
       this.game.render();
     } else if (command === 'load-statistics') {
       Stats.updateTableView();
-      this.loadPage('statistics');
+      this.loadPage(PAGES.STATISTICS);
     }
   }
 

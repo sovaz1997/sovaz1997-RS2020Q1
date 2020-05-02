@@ -2,7 +2,7 @@ import storage from '../../data/data.json';
 
 class Store {
   state = {
-    page: 'game',
+    page: '',
   }
 
   constructor() {
