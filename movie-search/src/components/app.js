@@ -1,10 +1,14 @@
 import Utils from '../utils/utils';
 import Header from './header';
 import FilmCard from './film-card';
+import FilmCardList from './film-card-list';
 
 export default class App {
   constructor() {
     this.createElement();
+
+    this.filmCard = new FilmCardList();
+
     this.render();
   }
 
@@ -18,5 +22,7 @@ export default class App {
     this.el.append(FilmCard({
       name: 'Test', posterSrc: '.', releaseYear: '2007', rating: '9.5',
     }));
+
+    this.el.append(this.filmCard.el);
   }
 }
