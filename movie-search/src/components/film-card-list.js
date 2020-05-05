@@ -1,17 +1,84 @@
 import Utils from '../utils/utils';
 
 export default class FilmCardList {
-  state = {
-    indexFrom: 0,
-  };
+  constructor(id) {
+    this.id = id;
+    this.slides = [];
 
-  constructor() {
     this.createElement();
-    this.render();
   }
 
   createElement() {
-    this.el = Utils.createElement('div', 'film-card-list');
+    this.el = FilmCardList.getContainer();
+    this.indicators = FilmCardList.getIndicatorsContainer();
+    this.inner = FilmCardList.getInner();
+
+    this.el.append(this.indicators);
+    this.el.append(this.inner);
+    this.el.append(this.getControl('prev', 'Previous'));
+    this.el.append(this.getControl('next', 'Next'));
+
+    this.el.setAttribute('id', this.id);
+  }
+
+  static getInner() {
+    return Utils.createElement('div', 'carousel-inner');
+  }
+
+  static getContainer() {
+    const el = Utils.createElement('div', 'film-card-list carousel slide');
+    el.dataset.ride = 'carousel';
+    return el;
+  }
+
+  static getIndicatorsContainer() {
+    return Utils.createElement('ol', 'carousel-indicators');
+  }
+
+  deleteAllSlides() {
+    this.inner.innerHTML = '';
+    this.indicators.innerHTML = '';
+    this.slides = [];
+  }
+
+  pushSlide(number, content) {
+    this.slides.push({
+      indicator: FilmCardList.getIndicator(number),
+      slide: FilmCardList.getSlide(content),
+    });
+  }
+
+  static getIndicator(number) {
+    const el = Utils.createElement('li');
+    el.dataset.target = this.id;
+    el.dataset.slideTo = number;
+    return el;
+  }
+
+  /*
+  static getSlide(content) {
+
+  }
+  */
+
+  getControl(type, text) {
+    const el = Utils.createElement('a', `carousel-control-${type}`);
+
+    el.setAttribute('href', `#${this.id}`);
+    el.setAttribute('role', 'button');
+    el.dataset.slide = type;
+
+    const icon = Utils.createElement('span', `carousel-control-${type}-icon`);
+    icon.setAttribute('aria-hidden', 'true');
+
+    el.append(icon);
+    el.append(Utils.createElement(
+      'span',
+      'sr-only',
+      [text],
+    ));
+
+    return el;
   }
 
   render() {

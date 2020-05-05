@@ -7,7 +7,7 @@ export default class App {
   constructor() {
     this.createElement();
 
-    this.filmCard = new FilmCardList();
+    this.filmCard = new FilmCardList('film-card-list');
 
     this.render();
   }
