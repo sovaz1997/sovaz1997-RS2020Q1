@@ -7,6 +7,7 @@ export default class FilmCardList {
 
     this.createElement();
     this.pushSlide(Utils.createElement('h1', '', ['Test']));
+    this.pushSlide(Utils.createElement('h1', '', ['Test 1']));
     this.setActiveSlide(0);
   }
 
