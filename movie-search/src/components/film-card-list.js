@@ -6,6 +6,8 @@ export default class FilmCardList {
     this.slides = [];
 
     this.createElement();
+    this.pushSlide(Utils.createElement('h1', '', ['Test']));
+    this.setActiveSlide(0);
   }
 
   createElement() {
@@ -19,6 +21,17 @@ export default class FilmCardList {
     this.el.append(this.getControl('next', 'Next'));
 
     this.el.setAttribute('id', this.id);
+  }
+
+  toggleSlideState(number, value) {
+    this.slides[number].slide.classList.toggle('active', value);
+    this.slides[number].indicator.classList.toggle('active', value);
+  }
+
+  setActiveSlide(number) {
+    for (let i = 0; i < this.slides.length; i += 1) {
+      this.toggleSlideState(i, number === i);
+    }
   }
 
   static getInner() {
@@ -41,16 +54,20 @@ export default class FilmCardList {
     this.slides = [];
   }
 
-  pushSlide(number, content) {
+  pushSlide(content) {
+    const number = this.slides.length;
     this.slides.push({
-      indicator: FilmCardList.getIndicator(number),
+      indicator: this.getIndicator(number),
       slide: FilmCardList.getSlide(content),
     });
+
+    this.indicators.append(this.slides[number].indicator);
+    this.inner.append(this.slides[number].slide);
   }
 
-  static getIndicator(number) {
+  getIndicator(number) {
     const el = Utils.createElement('li');
-    el.dataset.target = this.id;
+    el.dataset.target = `#${this.id}`;
     el.dataset.slideTo = number;
     return el;
   }
