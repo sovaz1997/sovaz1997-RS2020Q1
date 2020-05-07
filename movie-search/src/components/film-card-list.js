@@ -55,11 +55,11 @@ export default class FilmCardList {
     return el;
   }
 
-  /*
   static getSlide(content) {
-
+    const el = Utils.createElement('div', 'carousel-item');
+    el.append(content);
+    return el;
   }
-  */
 
   getControl(type, text) {
     const el = Utils.createElement('a', `carousel-control-${type}`);
